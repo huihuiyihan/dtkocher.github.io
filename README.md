@@ -1,4 +1,6 @@
-personalwebsite
-===============
+Dustin Personal Website
+=========
 
-My personal website written using the Jekyll templating solution to wrap my html, css, and javascript.
+I am building my personal website using the Jekyll templating engine.  I will also
+be using bootstrap for the layout along with my own personal sass, javascript,
+and html.
