@@ -1,12 +1,14 @@
 # Site settings
 title: Dustin Kocher
 email: dtkocher@hotmail.com
-description: > # this means to ignore newlines until "baseurl:"
+description: >
   Dustin Kocher is a Father, Husband, Friend, and last but not least a
   Solutions Engineer. Enjoys creating great software and user experiences
   using several different technologies. Specializes in Ruby on Rails, J2EE,
   AngularJS, and Bootstrap for web applications and RubyMotion for both Iphone
   and Android applications.
+keywords: >
+  Freelancer, Ruby on Rails, Software Engineer
 baseurl: "/personalwebsite" # the subpath of your site, e.g. /blog/
 url: "http://dustinkocher.com" # the base hostname & protocol for your site
 twitter_username: DustinKocher
