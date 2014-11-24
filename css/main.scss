@@ -10,5 +10,10 @@ $small-font-size:  $base-font-size * 0.875;
 
 $base-color:       rgb(73, 187, 204);
 
+body {
+  border-top: 7px solid $base-color;
+  background: #fafafa url("../img/cream.png") repeat
+}
+
 // Import partials from `sass_dir` (defaults to `_sass`)
 @import "bootstrap";
