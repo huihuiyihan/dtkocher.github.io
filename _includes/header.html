@@ -9,7 +9,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="{{ site.baseurl }}">
+        <a class="navbar-brand" href="{{ "/" | prepend: site.baseurl }}">
           <div class="inline-brand" >
             <img alt="DTK Solutions Engineer" src="{{ "/img/brand.png" | prepend: site.baseurl }}">
             <span>Solutions Engineer</span>
@@ -19,11 +19,9 @@
 
       <div class="collapse navbar-collapse" id="navbar">
         <ul class="nav navbar-nav navbar-right">
-          {% for page in site.pages %}
-            {% if page.title %}
-            <li><a href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a></li>
-            {% endif %}
-          {% endfor %}
+          <li><a href="{{ "" | prepend: site.baseurl }}">About</a></li>
+          <li><a href="{{ "/portfolio" | prepend: site.baseurl }}">Portfolio</a></li>
+          <li><a href="{{ "/contact" | prepend: site.baseurl }}">Contact</a></li>
         </ul>
       </div>
     </div>

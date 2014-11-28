@@ -1,11 +1,15 @@
-<div class="container-fluid background" data-sr="wait 0.2s and then ease-in-out 100px">
+<div class="container-fluid background"
+  style="background-image: url('../img/{{ page.background }}');"
+  data-sr="wait 0.2s and then ease-in-out 100px">
   <div class="container">
     <div class="row">
-      <h1>
-        <p>Life is all about the mixture of Family, Friends,
-          <br/>Experiences, and Solving Problems
-        </p>
-        <p><br/>Here is a peek into my life.</p>
+      <h1 style="
+        {% if page.background_text_margin_top %} margin-top: {{ page.background_text_margin_top }}; {% endif %}
+        {% if page.background_text_margin_left %} margin-left: {{ page.background_text_margin_left }}; {% endif %}
+        {% if page.background_text_color %} color: {{ page.background_text_color }}; {% endif %}
+        "
+        <p>{{ page.background_text_line1 }}</p>
+        <p><br/>{{ page.background_text_line2 }}</p>
       </h1>
     </div>
   </div>
@@ -16,3 +20,6 @@
     &nbsp;
   </div>
 </div>
+            {% if page.title %}
+            <li><a href="{{ page.url | prepend: site.baseurl }}">{{ page.title }}</a></li>
+            {% endif %}
