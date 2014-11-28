@@ -14,17 +14,17 @@ header h1 {
   font-family: serif;
 }
 
-a.navbar-brand img {
+header a.navbar-brand img {
   height: 32px;
 }
 
-.inline-brand {
+header div.inline-brand {
   font-size: 20px;
   color: black;
   font-family: cursive;
   display: inline-flex;
 }
 
-.inline-brand span {
+header div.inline-brand span {
   margin: 4px 0 0 7px;
 }
