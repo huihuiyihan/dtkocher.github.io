@@ -4,36 +4,22 @@
 @charset "utf-8";
 
 // Our variables
-$grey-color:       #828282;
+$base-color: rgb(73, 187, 204);
+$grey-color: #828282;
+
+$base-background: url("../img/cream.png") repeat;
 
 $base-font-family: Helvetica, Arial, sans-serif;
-$base-font-size:   16px;
-$small-font-size:  $base-font-size * 0.875;
-
-$base-color:       rgb(73, 187, 204);
+$base-font-size: 16px;
+$small-font-size: $base-font-size * 0.875;
 
 html, body {
-  background: url("../img/cream.png") repeat;
+  background: $base-background;
   height: 100%;
-}
-
-.background {
-  background-image: url('../img/family.jpg');
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-position-x: center;
-  background-position-y: 0px;
-  height: 100%;
-
-  h1 {
-    margin-top: 47%;
-    color: white;
-    font-family: serif;
-  }
 }
 
 // Import partials from `sass_dir` (defaults to `_sass`)
 @import "bootstrap";
 @import "header";
+@import "background";
 @import "footer";

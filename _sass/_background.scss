@@ -1,0 +1,21 @@
+.background {
+  background-image: url('../img/family.jpg');
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  background-position-x: center;
+  background-position-y: 0px;
+  height: 100%;
+  opacity:1;
+  transition: opacity 0.5s ease-out;
+
+  h1 {
+    margin-top: 47%;
+    color: white;
+    font-family: serif;
+  }
+}
+
+.fade {
+  opacity:0;
+}
