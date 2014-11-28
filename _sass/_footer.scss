@@ -1,4 +1,4 @@
-.nav-footer {
+footer {
   margin-bottom: 0px;
   text-shadow: 0 -1px 0 rgba(0,0,0,.25);
   color: #777;
@@ -6,19 +6,10 @@
   border-radius: 0px;
 }
 
-.icon {
-  > svg {
-    display: inline-block;
-    width: 20px;
-    height: 20px;
-    vertical-align: top;
-
-    path {
-        fill: $grey-color;
-    }
-  }
+footer span.copyright {
+  margin-top: 13px;
 }
 
-.copyright {
-  margin-top: 13px;
+footer i.big {
+  font-size: 25px;
 }
