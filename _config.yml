@@ -13,6 +13,7 @@ baseurl: "/personalwebsite" # the subpath of your site, e.g. /blog/
 url: "http://dustinkocher.com" # the base hostname & protocol for your site
 twitter_username: DustinKocher
 github_username:  dtkocher
+linkedin_username:  dtkocher
 
 # Build settings
 markdown: kramdown
