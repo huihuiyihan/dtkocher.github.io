@@ -10,16 +10,22 @@ $grey-color: #828282;
 $base-background: url("../img/cream.png") repeat;
 
 $base-font-family: Helvetica, Arial, sans-serif;
-$base-font-size: 16px;
+$base-font-size: 19px;
 $small-font-size: $base-font-size * 0.875;
-
-html, body {
-  background: $base-background;
-  height: 100%;
-}
 
 // Import partials from `sass_dir` (defaults to `_sass`)
 @import "bootstrap";
 @import "header";
 @import "background";
+@import "content";
 @import "footer";
+
+html, body {
+  background: $base-background;
+  height: 100%;
+
+  .content {
+    font-size: $base-font-size
+  }
+}
+

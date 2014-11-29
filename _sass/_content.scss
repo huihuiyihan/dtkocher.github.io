@@ -1,0 +1,15 @@
+.lead {
+  border-bottom: thin solid lightgrey;
+  margin-bottom: 42px;
+
+  .title {
+    color: $base-color;
+    font-size: 95px;
+
+    .description {
+      color: black;
+      font-size: 35px;
+      margin-top: -15px;
+    }
+  }
+}
