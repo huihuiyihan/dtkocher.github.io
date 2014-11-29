@@ -5,7 +5,7 @@ background: contact.jpg
 background_text_line1: >
   You have ideas and I would love to hear them.</br>
   Contact me and we can sit down to see what to do.
-background_text_margin_top: 10%
+background_text_margin_top: 25%
 background_text_margin_left: 20%
 permalink: /contact/
 ---
