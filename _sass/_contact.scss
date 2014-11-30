@@ -30,5 +30,21 @@ $diameter: 350px;
     .title {
       font-size: 22px;
     }
+
+    input, textarea {
+      width: 100%;
+      border-radius: 5px;
+      border: 1px solid #9C9C9C;
+      margin-bottom: 5px;
+    }
+
+    textarea {
+      height: 120px;
+    }
+
+    input[type=submit] {
+      width: 70px;
+      float: right;
+    }
   }
 }
