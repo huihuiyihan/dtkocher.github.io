@@ -1,17 +1,34 @@
+$diameter: 350px;
+
 .contact {
+  margin-top: 70px;
+  margin-bottom: 30px;
+
   .info {
-    border: 3px solid rgb(255, 255, 255);
-    border-image-source: initial;
-    border-image-slice: initial;
-    border-image-width: initial;
-    border-image-outset: initial;
-    border-image-repeat: initial;
-    top: 0px;
-    bottom: 0px;
-    left: 0px;
-    right: 0px;
-    background-color: rgb(73, 187, 204);
-    border-radius: 50%;
-    box-shadow: rgba(0, 0, 0, 0.6) 0px 1px 4px 0px;
+    font-size: 17px;
+    color: white;
+    text-align: center;
+    width: $diameter;
+    height: $diameter;
+    background: $base-color;
+    border-radius: $diameter/2;
+
+    .title {
+      margin-top: $diameter/5;
+      margin-bottom: 15px;
+      font-family: cursive;
+
+      b {
+        font-family: cursive;
+        font-size: 25px;
+        border-bottom: thin solid white;
+      }
+    }
+  }
+
+  .message {
+    .title {
+      font-size: 22px;
+    }
   }
 }
