@@ -9,7 +9,7 @@ description: >
   and Android applications.
 keywords: >
   Freelancer, Ruby on Rails, Software Engineer
-baseurl: "/personalwebsite" # the subpath of your site, e.g. /blog/
+baseurl: "" # the subpath of your site, e.g. /blog/
 url: "http://dustinkocher.com" # the base hostname & protocol for your site
 twitter_username: DustinKocher
 github_username:  dtkocher
