@@ -1,0 +1,20 @@
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>http://www.dustinkocher.com/</loc>
+    <priority>0.5</priority>
+    <lastmod>2014-11-30</lastmod>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>http://www.dustinkocher.com/portfolio</loc>
+    <priority>0.5</priority>
+    <lastmod>2014-11-30</lastmod>
+    <changefreq>monthly</changefreq>
+  </url>
+  <url>
+    <loc>http://www.dustinkocher.com/contact</loc>
+    <priority>0.5</priority>
+    <lastmod>2014-11-30</lastmod>
+    <changefreq>monthly</changefreq>
+  </url>
+</urlset>
