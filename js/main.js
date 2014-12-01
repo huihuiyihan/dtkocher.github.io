@@ -19,7 +19,9 @@ $(function() {
       }
       else if(scroll < fade) {
         $(".background").removeClass("fade");
+        $(".background").removeClass("fade-out");
         $(".background-bottom").removeClass("fade");
+        $(".background-bottom").removeClass("fade-out");
       }
     });
   }
