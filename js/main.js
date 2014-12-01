@@ -2,18 +2,22 @@ $(function() {
   window.sr = new scrollReveal();
   if($(".background").length > 0) {
     $(window).scroll(function() {
-      if ($(window).scrollTop() > $(window).height()-200) {
+      var scroll = $(window).scrollTop();
+      var fade=$(window).height()*0.65;
+      var fadeout=$(window).height()*0.85;
+
+      if(scroll > fadeout) {
         $(".background").addClass("fade-out");
         $(".background-bottom").addClass("fade-out");
       }
-      else if ($(window).scrollTop() > ($(window).height()-400)) {
+      else if(scroll > fade) {
         $(".background").addClass("fade");
         $(".background").removeClass("fade-out");
 
         $(".background-bottom").addClass("fade");
         $(".background-bottom").removeClass("fade-out");
       }
-      else if ($(window).scrollTop() < ($(window).height()-400)) {
+      else if(scroll < fade) {
         $(".background").removeClass("fade");
         $(".background-bottom").removeClass("fade");
       }
