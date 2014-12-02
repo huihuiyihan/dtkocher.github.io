@@ -47,5 +47,19 @@ $diameter: 350px;
       float: right;
       background-color: $base-color;
     }
+
+    #contactme .success {
+      color: #468847;
+      background-color: #dff0d8;
+      border-color: #d6e9c6;
+      border-radius: 5px;
+      padding-left: 5px;
+      padding-right: 5px;
+      margin-top: 10px;
+      margin-bottom: 10px;
+      width: 100%;
+      overflow: auto;
+      font-family: "Courier New", monospace;
+    }
   }
 }
