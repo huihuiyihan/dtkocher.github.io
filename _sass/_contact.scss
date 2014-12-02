@@ -60,6 +60,11 @@ $diameter: 350px;
       width: 100%;
       overflow: auto;
       font-family: "Courier New", monospace;
+      display: none;
+    }
+
+    #contactme:target .success {
+      display: inherit;
     }
   }
 }
