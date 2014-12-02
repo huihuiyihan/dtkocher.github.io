@@ -38,13 +38,17 @@ permalink: /contact/
         </p>
       </div>
       <div class="row">
+        <!--
         <form accept-charset="UTF-8" action="https://formkeep.com/f/4d2385cac181" method="POST">
+        -->
+        <form accept-charset="UTF-8" action="#" method="POST">
           <input type="hidden" name="utf8" value="✓">
-          <input type="text" name="name" placeholder="Name">
-          <input type="email" name="email" placeholder="Email">
-          <input type="text" name="subject" placeholder="Subject">
+          <input type="text" name="name" placeholder="Name" required>
+          <input type="email" name="email" placeholder="Email" required>
+          <input type="tel" name="telephone" placeholder="Telephone" pattern="\(?(\+?\d[- ( ) .]*){7,13}">
+          <input type="text" name="subject" placeholder="Subject" required>
           <input type="text" name="budget" placeholder="Project Budget">
-          <textarea name="message" placeholder="Describe Your Project"></textarea>
+          <textarea name="message" placeholder="Describe Your Project" required></textarea>
           <br>
           <input type="submit" value="Send" class="small btn btn-primary">
         </form>
