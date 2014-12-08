@@ -1,6 +1,5 @@
 # Site settings
 title: Dustin Kocher
-paginate: 5
 email: dtkocher@hotmail.com
 description: >
   Dustin Kocher is a Father, Husband, Friend, and last but not least a
@@ -18,3 +17,6 @@ linkedin_username:  dtkocher
 
 # Build settings
 markdown: kramdown
+sass:
+  style: compressed
+paginate: 5
