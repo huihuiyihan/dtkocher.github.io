@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+
+  {% include head.html %}
+
+  <body>
+
+    {% include navigation.html %}
+
+    {% include background_title.html %}
+
+    <div class="container content">
+      <div class="row">
+        {{ content }}
+      </div>
+      {% include pagination.html %}
+    </div>
+
+    {% include footer.html %}
+
+  </body>
+
+</html>
