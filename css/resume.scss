@@ -1,0 +1,535 @@
+@import "header";
+@import "footer";
+
+//colors
+$color_rangoon_green_approx: #181818;
+$color_log_cabin_approx: #222;
+$color_tundora_approx: #444;
+$color_concrete_approx: #f3f3f3;
+$color_meteor_approx: #cf8a05;
+$color_gallery_approx: #ededed;
+$color_alto_approx: #dedede;
+
+//fonts
+$font_0: Lato;
+$font_1: helvetica;
+$font_2: arial;
+$font_3: sans-serif;
+$font_4: Rokkitt;
+$font_5: Helvetica;
+$font_6: Arial;
+
+//@extend-elements
+//original selectors
+//html, body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, abbr, address, cite, code, del, dfn, em, img, ins, kbd, q, samp, small, strong, sub, sup, var, b, i, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, summary, time, mark, audio, video
+%extend_1 {
+  border: 0;
+  font: inherit;
+  font-size: 100%;
+  margin: 0;
+  padding: 0;
+  vertical-align: baseline;
+}
+
+//original selectors
+//html, body
+%extend_2 {
+  background: $color_rangoon_green_approx;
+  font-family: $font_0, $font_1, $font_2, $font_3;
+  font-size: 16px;
+  color: $color_log_cabin_approx;
+}
+
+//original selectors
+//#contactDetails ul li a, a[href^=tel]
+%extend_3 {
+  color: $color_tundora_approx;
+  text-decoration: none;
+  //Instead of the line below you could use @includetransition($transition-1, $transition-2, $transition-3, $transition-4, $transition-5, $transition-6, $transition-7, $transition-8, $transition-9, $transition-10)
+  transition: all .3s ease-in;
+}
+
+//original selectors
+//#name, #contactDetails
+%extend_4 {
+  float: none;
+  width: 100%;
+  text-align: center;
+}
+
+
+html {
+  @extend %extend_1;
+  @extend %extend_2;
+}
+body {
+  @extend %extend_1;
+  @extend %extend_2;
+}
+div {
+  @extend %extend_1;
+}
+span {
+  @extend %extend_1;
+}
+object {
+  @extend %extend_1;
+}
+iframe {
+  @extend %extend_1;
+}
+h1 {
+  @extend %extend_1;
+}
+h2 {
+  @extend %extend_1;
+}
+h3 {
+  @extend %extend_1;
+}
+h4 {
+  @extend %extend_1;
+}
+h5 {
+  @extend %extend_1;
+}
+h6 {
+  @extend %extend_1;
+}
+p {
+  @extend %extend_1;
+  font-size: 1em;
+  line-height: 1.4em;
+  margin-bottom: 20px;
+  color: $color_tundora_approx;
+}
+blockquote {
+  @extend %extend_1;
+}
+pre {
+  @extend %extend_1;
+}
+abbr {
+  @extend %extend_1;
+}
+address {
+  @extend %extend_1;
+}
+cite {
+  @extend %extend_1;
+}
+code {
+  @extend %extend_1;
+}
+del {
+  @extend %extend_1;
+}
+dfn {
+  @extend %extend_1;
+}
+em {
+  @extend %extend_1;
+}
+img {
+  @extend %extend_1;
+}
+ins {
+  @extend %extend_1;
+}
+kbd {
+  @extend %extend_1;
+}
+q {
+  @extend %extend_1;
+}
+samp {
+  @extend %extend_1;
+}
+small {
+  @extend %extend_1;
+}
+strong {
+  @extend %extend_1;
+}
+sub {
+  @extend %extend_1;
+}
+sup {
+  @extend %extend_1;
+}
+var {
+  @extend %extend_1;
+}
+b {
+  @extend %extend_1;
+}
+i {
+  @extend %extend_1;
+}
+dl {
+  @extend %extend_1;
+}
+dt {
+  @extend %extend_1;
+}
+dd {
+  @extend %extend_1;
+}
+ol {
+  @extend %extend_1;
+}
+ul {
+  @extend %extend_1;
+}
+li {
+  @extend %extend_1;
+}
+fieldset {
+  @extend %extend_1;
+}
+form {
+  @extend %extend_1;
+}
+label {
+  @extend %extend_1;
+}
+legend {
+  @extend %extend_1;
+}
+table {
+  @extend %extend_1;
+}
+caption {
+  @extend %extend_1;
+}
+tbody {
+  @extend %extend_1;
+}
+tfoot {
+  @extend %extend_1;
+}
+thead {
+  @extend %extend_1;
+}
+tr {
+  @extend %extend_1;
+}
+th {
+  @extend %extend_1;
+}
+td {
+  @extend %extend_1;
+}
+article {
+  @extend %extend_1;
+  display: block;
+}
+aside {
+  @extend %extend_1;
+  display: block;
+}
+canvas {
+  @extend %extend_1;
+}
+details {
+  @extend %extend_1;
+  display: block;
+}
+figcaption {
+  @extend %extend_1;
+  display: block;
+}
+figure {
+  @extend %extend_1;
+  display: block;
+}
+footer {
+  @extend %extend_1;
+  display: block;
+}
+header {
+  @extend %extend_1;
+  display: block;
+}
+hgroup {
+  @extend %extend_1;
+  display: block;
+}
+menu {
+  @extend %extend_1;
+  display: block;
+}
+nav {
+  @extend %extend_1;
+  display: block;
+}
+section {
+  @extend %extend_1;
+  display: block;
+  border-top: 1px solid $color_alto_approx;
+  padding: 20px 0 0;
+  &:first-child {
+    border-top: 0;
+  }
+  &:last-child {
+    padding: 20px 0 10px;
+  }
+}
+summary {
+  @extend %extend_1;
+}
+time {
+  @extend %extend_1;
+}
+mark {
+  @extend %extend_1;
+}
+audio {
+  @extend %extend_1;
+}
+video {
+  @extend %extend_1;
+}
+.clear {
+  clear: both;
+}
+#cv {
+  width: 90%;
+  max-width: 800px;
+  background: $color_concrete_approx;
+  margin: 30px auto;
+}
+.mainDetails {
+  padding: 25px 35px;
+  border-bottom: 2px solid $color_meteor_approx;
+  background: $color_gallery_approx;
+}
+#name {
+  float: left;
+  h1 {
+    font-size: 2.5em;
+    font-weight: 700;
+    font-family: $font_4, $font_5, $font_6, $font_3;
+    margin-bottom: -6px;
+  }
+  h2 {
+    font-size: 2em;
+    margin-left: 2px;
+    font-family: $font_4, $font_5, $font_6, $font_3;
+  }
+}
+#mainArea {
+  padding: 0 40px;
+}
+#headshot {
+  width: 12.5%;
+  float: left;
+  margin-right: 30px;
+  img {
+    width: 100%;
+    height: auto;
+    //Instead of the line below you could use @includeborder-radius($radius, $vertical-radius)
+    border-radius: 50px;
+  }
+}
+#contactDetails {
+  float: right;
+  ul {
+    list-style-type: none;
+    font-size: 0.9em;
+    margin-top: 2px;
+    li {
+      margin-bottom: 3px;
+      color: $color_tundora_approx;
+      a {
+        @extend %extend_3;
+        &:hover {
+          color: $color_meteor_approx;
+        }
+      }
+    }
+  }
+}
+a[href^=tel] {
+  @extend %extend_3;
+}
+.sectionTitle {
+  float: left;
+  width: 25%;
+  h1 {
+    font-family: $font_4, $font_5, $font_6, $font_3;
+    font-style: italic;
+    font-size: 1.5em;
+    color: $color_meteor_approx;
+  }
+}
+.sectionContent {
+  float: right;
+  width: 72.5%;
+  h2 {
+    font-family: $font_4, $font_5, $font_6, $font_3;
+    font-size: 1.5em;
+    margin-bottom: -2px;
+  }
+}
+.subDetails {
+  font-size: 0.8em;
+  font-style: italic;
+  margin-bottom: 3px;
+}
+.keySkills {
+  list-style-type: none;
+  //Instead of the line below you could use @includecolumn-count($count)
+  column-count: 3;
+  margin-bottom: 20px;
+  font-size: 1em;
+  color: $color_tundora_approx;
+  ul li {
+    margin-bottom: 3px;
+  }
+}
+@media all and(min-width: 602px) and(max-width: 800px) {
+  #headshot {
+    display: none;
+  }
+  .keySkills {
+    //Instead of the line below you could use @includecolumn-count($count)
+    column-count: 2;
+  }
+}
+@media all and(max-width: 601px) {
+  #cv {
+    width: 95%;
+    margin: 10px auto;
+    min-width: 280px;
+  }
+  #headshot {
+    display: none;
+  }
+  #name {
+    @extend %extend_4;
+  }
+  #contactDetails {
+    @extend %extend_4;
+  }
+  .sectionTitle {
+    float: none;
+    width: 100%;
+    margin-left: -2px;
+    font-size: 1.25em;
+  }
+  .sectionContent {
+    float: none;
+    width: 100%;
+  }
+  .keySkills {
+    //Instead of the line below you could use @includecolumn-count($count)
+    column-count: 2;
+  }
+}
+@media all and(max-width: 480px) {
+  .mainDetails {
+    padding: 15px;
+  }
+  section {
+    padding: 15px 0 0;
+  }
+  #mainArea {
+    padding: 0 25px;
+  }
+  .keySkills {
+    //Instead of the line below you could use @includecolumn-count($count)
+    column-count: 1;
+  }
+  #name h1 {
+    line-height: .8em;
+    margin-bottom: 4px;
+  }
+}
+@media print {
+  #cv {
+    width: 100%;
+  }
+}
+@-webkit-keyframes reset {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@-webkit-keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  40% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@-moz-keyframes reset {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@-moz-keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  40% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+@keyframes reset {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  40% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.instaFade {
+  animation-name: reset, fade-in;
+  animation-duration: 1.5s;
+  animation-timing-function: ease-in;
+}
+.quickFade {
+  animation-name: reset, fade-in;
+  animation-duration: 2.5s;
+  animation-timing-function: ease-in;
+}
+.delayOne {
+  animation-delay: 0, .5s;
+}
+.delayTwo {
+  animation-delay: 0, 1s;
+}
+.delayThree {
+  animation-delay: 0, 1.5s;
+}
+.delayFour {
+  animation-delay: 0, 2s;
+}
+.delayFive {
+  animation-delay: 0, 2.5s;
+}
