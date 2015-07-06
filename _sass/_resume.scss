@@ -3,7 +3,7 @@ $color_rangoon_green_approx: #181818;
 $color_log_cabin_approx: #222;
 $color_tundora_approx: #444;
 $color_concrete_approx: $base-background;
-$color_meteor_approx: #cf8a05;
+$color_meteor_approx: $base-color;
 $color_gallery_approx: $base-background;
 $color_alto_approx: #dedede;
 
@@ -392,6 +392,13 @@ a[href^=tel] {
 		margin-bottom: 3px;
 	}
 }
+
+.printbutton {
+  float: right;
+  background-color: $base-color;
+  border-color: $base-color;
+}
+
 @media all and(min-width: 602px) and(max-width: 800px) {
 	#headshot {
 		display: none;
@@ -462,6 +469,11 @@ a[href^=tel] {
 	#cv {
 		width: 100%;
 	}
+
+  .printbutton {
+    visibility: hidden;
+    display: none;
+  }
 }
 @-webkit-keyframes reset {
 	0% {
