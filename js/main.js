@@ -1,5 +1,4 @@
 $(function() {
-  window.sr = new scrollReveal();
   if($(".background").length > 0) {
     $(window).scroll(function() {
       var scroll = $(window).scrollTop();
