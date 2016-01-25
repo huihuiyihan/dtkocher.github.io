@@ -43,7 +43,19 @@ think
 The first step in going to Angular 2 would be to make sure it is modular and broken into compenents (isolated chunks of
 functionality).
 
+``` ruby
+def show
+  @widget = Widget(params[:id])
+  respond_to do |format|
+    format.html # show.html.erb
+    format.json { render json: @widget }
+  end
+end
+```
 
+``` ts
+export class Highway(){}
+```
 {% highlight ts %}
 export class Highway(){}
 {% endhighlight %}
