@@ -39,26 +39,34 @@ In this blog post I am going to start you on your way to picking up Angular 2 ba
 true power of Angular 1 was in something called a Directive, and this is where I will start.
 
 I will be using Typescript for Angular 2 throughout this post as I want to show Angular 2 in all its glory. As we walk through the
-differences in how to create a Directive between Angular 1 and 2 we will be building Task and Subtask directives.
+differences in how to create a Directive between Angular 1 and 2 we will be building Task and Subtask directives. If you wish to
+follow along by writing the code yourself you can get a start here:
+
+  + [Angular 1 Task Start][angular1-starter]
+  + [Angular 2 Task Start][angular2-starter]
+
+<br/>
 
 ###Setting up your Directive
 This will be the start of many differences you see between the two languages.
+<br/>
 
 In **Angular 1** we create a directive by creating a `.directive` function.
 
-``` js
-angular.module('app');
+``` javascript
+angular.module('TaskApp');
 
 app.directive('task',function() {
   return {};
 });
 ```
+<br/>
 
-In **Angular 2** you have two things you have to do:
+In **Angular 2** you have three things you have to do:
 
-  + Import the Directives you are going to need
-  + Create a first rate class
-  + Add the magic using either a `@Component` or `@Directive` annotation
+  1. Import the Directives you are going to need
+  1. Create a first rate class
+  1. Add the magical metadata using either a `@Component` or `@Directive` annotation
 
 ``` ts
 import {Component, View} from 'angular2/core';
@@ -72,13 +80,59 @@ import {Component, View} from 'angular2/core';
 export class Task { }
 ```
 
-Now you probably have a ton of questions.
+After seeing the differences between Angular 1 and 2 you probably have some questions.
 
-  + *Why are we using `@Component` instead of `@Directive`?* To start out in Angular 2 everything is a Directive. A `@Component`
-  is a directive
+  1. **Why are we using `@Component` instead of `@Directive`?** To start out, in Angular 2 everything is a Directive. There is no more
+  deciding on whether I should use a controller or a directive. The annotation `@Component` is a directive that requires a view. This will be
+  what you use to build out all the different parts of you Angular app's view. The annotation `@Directive` is a directive that acts
+  on a behavior, you will use this to add behavior to your different HTML elements.
+  1. **Do we always have to put the template in the `@View` or can we put it somewhere external?** `@View` also has the templateUrl option you
+  can add to the metadata properties. With templateUrl you can point to a file location for your template.
+  1. **Do we have to always use `@View` with `@Component`?** You will always need to have a view with a `@Component`. However, you do not
+  necessarly need to use the `@View` annonation. `@Component` actually contains the option of template and templateUrl as well. The power
+  of using `@View` is it allows you to specify devices to apply the display on, for example mobile or desktop.
+  1. **What is this `import` and `export`?** In Angular2 everything is modular, and therefore better by default, including the core library.
+  So if you need something you must `import` it into your new component hince the `import {Component, View} from 'angular2/core';`.
+  To make your class/component available to the rest of your Angular app you will need to `export` it hince the `export class Task {}`.
+  If you have been doing AngularJS for very long you probably made your Angular 1 app modular by using something like RequireJS or Webpack.
+  For Example the Angular 1 code above if made modular would look like:
 
-Check out the [Jekyll docs][jekyll] for more info on how to get the most out of Jekyll. File all bugs/feature requests at [Jekyll’s GitHub repo][jekyll-gh]. If you have questions, you can ask them on [Jekyll’s dedicated Help repository][jekyll-help].
+    ``` javascript
+      // task.directive.js
+      (function() {
+        'use strict';
 
-[jekyll]:      http://jekyllrb.com
-[jekyll-gh]:   https://github.com/jekyll/jekyll
-[jekyll-help]: https://github.com/jekyll/jekyll-help
+        module.exports = Task;
+
+        Task.$inject = [];
+
+        function Task() {
+          return {
+          };
+        }
+      })();
+    ```
+
+    ``` javascript
+      // task.module.js
+      angular.module('TaskApp')
+      .directive('Task', require('./task.directive'));
+    ```
+
+<br/>
+
+###Creating the Task Directive and Template
+
+
+###Conclusion
+As you can see just from the perspective of writing a Directive, a ton has changed from Angular 1 to 2. If you wish to see the difference between
+Angular 1 and Angular2 in working order you can view the plunkers of the two versions of Tasking here:
+
+  + [Angular1 Task][angular1-task-done]
+  + [Angular2 Task][angular2-task-done]
+
+
+[angular1-starter]: http://plnkr.co/edit/p7jiJyQFuwTr5W0r4Jl7?p=preview
+[angular2-starter]: http://plnkr.co/edit/7o4bfFxFChlV5giG3lEx?p=preview
+[angular1-task-done]: http://plnkr.co/edit/JRyNzWLjRO6FEhg8MrwH?p=preview
+[angular2-task-done]: http://plnkr.co/edit/mAAN3GmgPcuvRvEDhixO?p=preview
