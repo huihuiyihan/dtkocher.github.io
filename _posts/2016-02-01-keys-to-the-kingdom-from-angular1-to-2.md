@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  The Keys to the Kingdom - From Angular 1 to 2
-url: /angular2/2016/01/25/keys-to-the-kingdom-from-angular-1-to-2.html
+url: /angular2/2016/02/01/keys-to-the-kingdom-from-angular-1-to-2.html
 permalink: /angular2/2016/02/01/keys-to-the-kingdom-from-angular-1-to-2.html
 keywords: Angular2, Angular, Directives, Components
 excerpt: The Keys to the Kingdom - From Angular 1 to 2
