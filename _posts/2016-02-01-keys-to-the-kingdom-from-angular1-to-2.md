@@ -26,18 +26,18 @@ excerpt: |
 AngularJS was originally created back in 2009. It was built initially with the hope of helping web designers sprinkle a
 little magic into their html. What happened instead was the revolution of the single page application. While
 AngularJS is still very powerful it has it warts, after all it was built with design first in mind. Given new frameworks
-like Flux with React coming out with speed and developer savvy in mind, AngularJS needed a revamp.
+like Flux with React coming out, with speed and developer savvy in mind, AngularJS needed a revamp.
 
 Now that the revamp of AngularJS is here, in the form of Angular 2 beta and production ready. After all it is Google and
-everything in production is beta. I think it is time to investigate the Keys to the Kingdom that is Angular 2.
+everything in production is beta. I think it is time to investigate the Keys to the Kingdom of Angular 2.
 
 While following along the process of Angular 2's creation, I don't see any easy way to upgrade your apps from Angular 1 to 2.
 There are helpful methods and procedures you can follow, but in the end you will be updating the majority of your code base.
-From what I have seen it is worth it in every way, whether for a code readability perspective or for technical reasons.
+From what I have seen it is worth it in every way, whether from a code readability perspective or due to technical reasons.
 
 In this blog post I am going to start you on your way to picking up Angular 2 based on what you know from Angular 1. The
 true power of Angular 1 was in something called a Directive, and this is where I will start. I will be explaining the Angular 1
-approach in the case as I go along in the case you are new to Angular 1 as well.
+approach as I go along in the case you are new to Angular 1 as well.
 
 I will be using Typescript for Angular 2 throughout this post as I want to show Angular 2 in all its glory. As we walk through the
 differences in how to create a Directive between Angular 1 and 2 we will be building Task and Subtask directives. If you wish to
@@ -50,7 +50,7 @@ follow along by writing the code yourself you can get a start here:
 
 ###Setting Up Your Directive
 This will be the start of many differences you see between the Angular 1 and 2. In this section we aren't going to add any
-special logic, we will be focusing strictly on setting up the directive files only.
+special logic. We will be focusing strictly on setting up the directive files only.
 <br/>
 
 In **Angular 1** we create a directive by creating a `.directive` function.
@@ -69,7 +69,7 @@ In **Angular 2** you have three things you have to do:
 
   1. Import the Directives you are going to need
   1. Create a first rate class
-  1. Add the magical metadata using either a `@Component` or `@Directive` annotation
+  1. Add the magical metadata to the class using either a `@Component` or `@Directive` annotation
 
 ``` ts
 /* app/tasks.ts */
@@ -88,19 +88,19 @@ After seeing the differences in setting up the the directive files between Angul
 
   1. **Why are we using `@Component` instead of `@Directive`?** To start out, in Angular 2 everything is a Directive. There is no more
   deciding on whether I should use a controller or a directive. The annotation `@Component` is a directive that requires a view. This will be
-  what you use to build out all the different parts of you Angular app's view, **Angular 2's** foundation. The annotation `@Directive` is a
-  directive that acts on a behavior, you will use this to add behavior to your different HTML elements.
+  what you use to build out all the different parts of your Angular app's view, in essence it is **Angular 2's** foundation. The
+  annotation `@Directive` is a directive that acts on a behavior. You would use this to add behavior to your different HTML elements.
   1. **Do we always have to put the template in the `@View` or can we put it somewhere external?** `@View` also has the templateUrl option you
   can add to the metadata properties. With templateUrl you can point to a file location for your template.
   1. **Do we have to always use `@View` with `@Component`?** You will always need to have a view with a `@Component`. However, you do not
   necessarily need to use the `@View` annotation. `@Component` actually contains the option of template and templateUrl as well. The power
-  of using `@View` though is it allows you to specify devices to apply the display on, for example mobile or desktop. You can have multiple
-  `@View's`.
+  of using `@View` though is it allows you to specify devices to apply the display on, for example you can have one for mobile devices and one for the desktop.
   1. **What is this `import` and `export`?** In Angular2 everything is modular, and therefore better by default, including the core Angular library.
   So if you need something external from your Component you must `import` it into your new component hence the `import {Component, View} from 'angular2/core';`.
   To make your class/component available to the rest of your Angular app you will need to `export` it hence the `export class Task {}`.
-  If you have been doing AngularJS for very long you probably made your Angular 1 app modular by using something like RequireJS or Webpack,
-  no more of however. If you have never used RequireJS or Webpack to make your application modular here is what it would look like:
+  If you have been doing AngularJS for very long you probably made your Angular 1 app modular by using something like RequireJS or Webpack.
+  If you have never used RequireJS or Webpack I would advise you to do so. This will make the upgrade path
+  even easier. Here is what it would look like if you were using RequireJS or Webpack:
 
     ``` javascript
       // tasks.directive.js
@@ -158,12 +158,13 @@ Now lets build the tasks template in tasks.html.
 
 The only things to notice in the template are:
 
-  + `ng-model="newTask"` - In Angular 1, ng-model is a way to associate/use a variable in the Tasks directive's scope to it's template.
+  + `ng-model="newTask"` - In Angular 1, ng-model is a way to associate and/or use a variable in the Tasks directive's scope in the template. It is
+  also a way to pass data from one directive to the next.
   + `ng-click="addTask()"` - Here we are creating an on-click event and having it call the Tasks directive's `addTask()` function.
   + `ng-repeat="task in tasks track by $index"` - This is Angular 1's template version of a for loop. We are just looping through the
   tasks on the Tasks directive's scope and tracking each task by it's index. There will be a `<li></li>` tag created for each task.
 
-It is now time to build the actual directive now that we have the tags in the index.html and the template for it.
+Now that we have the tags in the index.html and template for the Tasks directive lets actually build it out.
 
 ``` javascript
 // tasks.js
@@ -190,11 +191,13 @@ angular.module('TaskApp')
 
 The things to point out about this Tasks directive are:
 
-  + `restrict: 'E'` - Restrict is the way we define how we declare the Tasks directive in the DOM.
+  + `restrict: 'E'` - Restrict is the way we define how we declare the Tasks directive in the DOM. It accepts 3 different
+  values and all the possible combinations of the 3 values.
     * A - matches attribute name - `<div tasks></div>`
     * E - matches element name - `<tasks></tasks>`
     * C - matches class name - `<div class="tasks"></div>`
-  + **link function** - This is often a debate in Angular 1, should we use link or controller.
+  + `link: function()` - This is often a debate in Angular 1, should we use link or controller in our directive. I typically
+  follow the following rules.
     * link - This is rendered after the directive is cloned and typically used for behavior oriented things on the directive.
     * controller - Typically used if another directive needs to talk to it.
 
@@ -266,11 +269,13 @@ So what you ask is going on here.
   importing **NgClass, NgIf, NgFor, NgSwitch, NgSwitchWhen, and NgSwitchDefault**.
   + For the sake of a different look I removed the `@View` annotation and added the **templateUrl** to the `@Component` metadata.
   + **What is this ``directives: [CORE_DIRECTIVES]``?** Every component that is needed in the view is now required to be added to the
-  `directives` property array. This would be available in the `@View` metadata as well if you went that route for your display metadata.
+  `directives` property array. This would be available in the `@View` metadata as well if you went that route for your display.
   + **Where is the link function?** Well in Angular 2 we don't have to worry about links or controllers anymore. As you see we now have
   a first rate class to represent what is going on. With the beauty of **Typescript** we are able to hide our variables using private
   encapsulation and expose them via getters and/or setters. By default everything in a Typescript class is public. We also no longer
-  have to worry about this silly **scope** thing. Every class public method or variable is available to the template to call and/or use.
+  have to worry about this silly **scope** thing. Every classes' public or private method and variable is available to the template to call and/or use.
+  So while we are encapsulating the `_tasks` and `_newTasks` variables from other classes using them outright. In Angular 2 the template
+  is considered part of the class and therefore has access to them.
 
 <br>
 
@@ -331,8 +336,8 @@ angular.module('TaskApp')
 ```
 
 In Angular 1 to perform transclusion there is something called `ng-transclude` which we will add to the Tasks directive template
-where we want the html injected. We will also need to add the `transclude: true` line to the Tasks directive. If you would like
-to learn more about Transclusion there is a great article [here][tranclude].
+in the location we want the html injected. We will also need to add the `transclude: true` line to the Tasks directive. If you would like
+to learn more about Transclusion there is a great article [A Guide To Transclusion in AngularJS][tranclude].
 
 <br>
 
@@ -356,19 +361,18 @@ Where did **Transclusion** go? Well in Angular 2 we no longer use transclusion, 
 **Shadow DOM**. The basics of Shadow DOM are as follows:
 
   + Shadow DOM allows you to build true components. It separates the content from the presentation.
-    * There are two new nodes introduced to the DOM the Shadow Root and Host.
+    * There are two new nodes introduced to the DOM the Shadow Root and Shadow Host.
     * There are two new important standards used. The `<template>` and `<content>` elements.
-    * Any style defined on inside the `<template>` tags are private to that template and does not affect the
-    rest of the DOM.
+    * Any style defined inside the `<template>` tags are private to that template and do not affect the rest of the DOM.
     * Any markup or text (dynamic or not) defined in the root element is passed to the host element or `<template>`
     and placed between `<content>` tags.
     * An example is if you define a root element for example `<div id="#Dustin">Hi</div>` and a host element
     `<template id="#Dustinhost"><style> span { font-family: 'Arial' } </style><content></content> <span>World</span></template>`
     you will be given the display **Hi World**. Also only the span tags within the `<template>` tags are affected by
     the style.
-    * If you are interested in a more in-depth view into Shadow DOM you should check out this article [here][shadow-dom].
-  + You might ask why are we then using ng-content instead of just content tags, which would be a great question. Because
-  very few browsers currently support Shadow DOM, Angular 2 provides three forms of Shadow DOM encapsulation. If you don't
+    * If you are interested in a more in-depth view into Shadow DOM you should check out this article [Shadow DOM 101][shadow-dom].
+  + You might be curious as to why we are using ng-content instead of just content tags. This would be a great question. The answer is
+  very few browsers currently support real Shadow DOM. Angular 2 as a work around provides three forms of Shadow DOM encapsulation. If you don't
   use the default encapsulation you would need to define in the `@Component` metadata the property **encapsulation** of one of the following
     * ViewEncapsulation.None - This takes away Shadow DOM and provides no encapsulation.
     * ViewEncapsulation.Emulated - This is the default. It does not use true Shadow DOM. However it does provide
@@ -380,7 +384,6 @@ Where did **Transclusion** go? Well in Angular 2 we no longer use transclusion, 
 <br>
 
 ###Adding Subtasks To A Task
-
 Now that we have the ability to add tasks it would be nice if we could add subtasks to each task to allow more detail
 to be added. Lets also add a checkbox to each subtask so we can mark when it is complete (really since we aren't hitting a
 server this is more for visual appeal).
@@ -493,7 +496,7 @@ export class Tasks {
 }
 ```
 
-We have to import the **SubTasks** component into app/tasks.ts so that Tasks knows about it. Along with that we had
+We have to import the **SubTasks** component into app/tasks.ts so that Tasks component knows about it. Along with that we had
 to add **SubTasks** as a directive that will be used in the components view.
 
 ``` ts
@@ -520,7 +523,7 @@ export class SubTasks {
 This probably looks pretty similar to the Tasks component. The only difference is we are passing in the newSubTask
 to the add method instead of using a variable already defined on SubTasks. Lets see why.
 
-```html
+``` html
 <!-- app/sub-tasks.html -->
 <input type="text" #newSubTask placeholder="Enter Sub Tasks"/>
 <button type="button" class="btn btn-primary" (click)="add(newSubTask.value); newSubTask.value=''">Submit</button>
@@ -533,8 +536,9 @@ to the add method instead of using a variable already defined on SubTasks. Lets 
 ```
 
 The reasons is because in Angular 2 we can define template variables. You do this by adding a #variablename attribute
-to the element. As you can see we created a newSubTask template element that holds the input value for the input field.
-We then pass this to the add function and reset it on the click event.
+to the element. As you can see we created a newSubTask template variable that holds the input value for the input field.
+We then pass this to the add function and reset it on the click event. We no longer have the need to create class variables
+just for passing data from the template to the Directive/Component.
 
 <br>
 
@@ -559,8 +563,8 @@ In **Angular 1** lets start by setting up the Tasks directive:
 </ol>
 ```
 
-First we are going to have to send the Subtasks directive the index of the directive that they belong to. This
-is done by passing the index as we loop.
+First we are going to have to send the Subtasks directive the index of the task that they belong to. This
+is done by passing the index as we loop to the attribute task-index.
 
 ``` js
 //tasks.js
@@ -650,13 +654,14 @@ angular.module('TaskApp')
 ```
 
 What to notice here are:
-  + We added a scope taskIndex that needs to be passed in. This will allow the Subtask directive to know the task it is under
-  index. For more information the options for scope variables being passed in are:
+
+  + We added a scope taskIndex that needs to be passed in. This will allow the Subtask directive to know the index of the task it is under.
+  For more information about the options for scope variables being passed:
     * `=` - This is a two way binding between both the parent and child directive. So when the value changes in one directive
     it changes in both. A ng-modle most always be passed in these cases.
     * `&` - This is used to bind a parent directive's method to the child directive.
     * `@` - This is a one way binding between the parent directive and child directive. When the parent directive changes
-    it changes the child directive but not visa versa. An expression must be passed in these cases - `{{}}`.
+    it changes the child directive but not visa versa. An expression must be passed in these cases.
   + We added a `require: '^tasks'` property to the directive. This forces the directive to be a child of the Tasks directive. It
   also gives access in the link function to the Tasks controller.
   + In the link function we added the ability to remove a subtask and when there are no more we call the Tasks directive
@@ -694,7 +699,7 @@ export class Task {
 
 You might ask why we have an `_active:boolean` defined but not one for `_name`. Well in Typescript we can create public
 and private class variables in the constructor which is what we did with `_name`.  You also might notice we have export
-in front of class, this is so other component or classes can use this Task class.
+in front of class, this is so other components or classes can use this Task class.
 
 Now lets update the Tasks component.
 
@@ -741,8 +746,8 @@ export class Tasks {
 
 Here we have imported the new Task class. We have also updated all the _tasks to use the new Task class. We have an
 Array of Task now and we create `new Task(this.newTask)` objects when we add a task. The other thing we added was
-the remove a task method. This method calls the `deactive()` method on the Task class to set the active attribute to false
-as shown above for the tasks index that was passed into the remove method.
+the `remove` method. This method calls the `deactive()` method on the Task class to set the active attribute to false
+as shown above for the tasks index that was passed into the `remove` method.
 
 ``` html
 <!-- app/tasks.html -->
@@ -760,7 +765,7 @@ as shown above for the tasks index that was passed into the remove method.
 ```
 
 In the tasks.html we have added a [hidden] attribute that is part of the CORE_DIRECTIVES which allows us to define wether or
-not to show a element. The other thing we did was define a new attribute on sub-tasks called [taskIndex] in which we pass
+not to show a element. It replaces Angular 1's ng-show and ng-hide. The other thing we did was define a new attribute on sub-tasks called [taskIndex] in which we pass
 the index of the task the subtask is associated with.
 
 Now lets see how the subtask directive changed.
@@ -820,13 +825,16 @@ export class SubTasks {
 ```
 
 Yes we changed quite a decent amount here.
+
   + We imported the Task class here just as we did in the Tasks component. Just as we did there we updated all
   the areas dealing with `_tasks` to use the new Task class.
-  + You might also notice we have a new metadata property **inputs** which we pass in the array the taskIndex.
+  + You might also notice we have a new metadata property **inputs** which we give an array with the taskIndex.
   No longer do we have to create some weird scope variable using the following signs which make no sense =, &, and @.
   We also don't have to worry does this bind one way or two way. If it is an inputs it binds from parent to child. If
-  it is outputs it binds from child to parent. Lastly you can have the inputs also be in the outputs so you get your
-  two way binding.
+  it is outputs it binds from child to parent. You can also have the inputs be in the outputs so you get your
+  two way binding. As a side not you might have noticed we don't have that weird thing in Angular 1 where you call
+  it taskIndex in the directive and task-index on the element tag. Instead what you call it in the Directive/Component is what
+  you call it on the element tag.
   + No more `require` to say you want to use another directive. Instead you can do what makes sense. You can inject
   the component or directive you need straight into the constructor. You might ask why I had to do `@Inject(forwardRef(() => Tasks)) tasks)`?
   Well this particular injection is special. That is because the Tasks component also imports the SubTasks component.
@@ -838,9 +846,13 @@ Yes we changed quite a decent amount here.
 <br>
 
 ###Conclusion
+There are several ways you can still approve apon the given code using just Typescript. You can extend the Tasks component on the Subtasks
+component class since a Subtask really is a Task. There are several other things you could do as well. However for this post I just wanted to cover
+the differences between Angular 1 and 2 in regards to the **Directive**.
+
 I hope this post has helped you learn. As you can see just from the perspective of writing a
-Directive, a ton has changed from Angular 1 to 2. If you wish to see the difference between
-Angular 1 and Angular2 in working order you can view the plunkers of the two versions of Tasking here:
+Directive, a ton has changed from Angular 1 to 2. If you wish to look at or play around with the final product
+of the TaskApp in Angular 1 and Angular2 you can view the plunkers below:
 
   + [Angular1 Task][angular1-task-done]
   + [Angular2 Task][angular2-task-done]
