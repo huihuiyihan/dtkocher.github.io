@@ -25,7 +25,7 @@ excerpt: |
 ---
 AngularJS was originally created back in 2009. It was built initially with the hope of helping web designers sprinkle a
 little magic into their html. What happened instead was the revolution of the single page application. While
-AngularJS is still very powerful it has it warts, after all it was built with design first in mind. Given new frameworks
+AngularJS is still very powerful it has it warts, after all it was built with design first in mind. Given new libraries and architectures
 like Flux with React coming out, with speed and developer savvy in mind, AngularJS needed a revamp.
 
 Now that the revamp of AngularJS is here, in the form of Angular 2 beta and production ready. After all it is Google and
