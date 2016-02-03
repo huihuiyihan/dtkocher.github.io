@@ -151,7 +151,7 @@ Now lets build the tasks template in tasks.html.
 <button type="button" class="btn btn-primary" ng-click="addTask()">Submit</button>
 <ol>
   <li ng-repeat="task in tasks track by $index">
-    <h3>{{ task }}</h3>
+    <h3>{ { task }}</h3>
   </li>
 </ol>
 ```
@@ -220,7 +220,7 @@ did this. I could have just as easily made Tasks the root component.
 <button type="button" class="btn btn-primary" (click)="add()">Submit</button>
 <ol>
   <li *ngFor="#task of tasks; #index = index;">
-    <h3>{{ task }}</h3>
+    <h3>{ { task }}</h3>
   </li>
 </ol>
 ```
@@ -306,7 +306,7 @@ moving html from one location to another.
 <button type="button" class="btn btn-primary" ng-click="addTask()">Submit</button>
 <ol>
   <li ng-repeat="task in tasks track by $index" >
-    <h3>{{ task.name }}</h3>
+    <h3>{ { task.name }}</h3>
   </li>
 </ol>
 ```
@@ -352,7 +352,7 @@ In **Angular 2** you just need to do one thing, add `<ng-content>` tags to the t
 <button type="button" class="btn btn-primary" (click)="add()">Submit</button>
 <ol>
   <li *ngFor="#task of tasks; #index = index;">
-    <h3>{{ task.name }}</h3>
+    <h3>{ { task.name }}</h3>
   </li>
 </ol>
 ```
@@ -398,7 +398,7 @@ Lets add the following in **Angular 1**.
 <button type="button" class="btn btn-primary" ng-click="addTask()">Submit</button>
 <ol>
   <li ng-repeat="task in tasks track by $index" >
-    <h3>{{ task.name }}</h3>
+    <h3>{ { task.name }}</h3>
     <sub-tasks ></sub-tasks>
   </li>
 </ol>
@@ -411,7 +411,7 @@ Lets add the following in **Angular 1**.
 <ul>
   <li ng-repeat="subTask in subTasks track by $index">
     <input type="checkbox">
-    {{ subTask }}
+    { { subTask }}
   </li>
 </ul>
 ```
@@ -454,7 +454,7 @@ In **Angular 2** there is slightly more work to do.
 <button type="button" class="btn btn-primary" (click)="add()">Submit</button>
 <ol>
   <li *ngFor="#task of tasks; #index = index;">
-    <h3>{{ task.name }}</h3>
+    <h3>{ { task.name }}</h3>
     <sub-tasks ></sub-tasks>
   </li>
 </ol>
@@ -530,7 +530,7 @@ to the add method instead of using a variable already defined on SubTasks. Lets 
 <ul>
   <li *ngFor="#subTask of subTasks; #index = index;">
     <input type="checkbox">
-    {{ subTask.name }}
+    { { subTask.name }}
   </li>
 </ul>
 ```
@@ -557,7 +557,7 @@ In **Angular 1** lets start by setting up the Tasks directive:
 <button type="button" class="btn btn-primary" ng-click="addTask()">Submit</button>
 <ol>
   <li ng-repeat="task in tasks track by $index" ng-show="task.show">
-    <h3>{{ task.name }}</h3>
+    <h3>{ { task.name }}</h3>
     <sub-tasks task-index="$index"></sub-tasks>
   </li>
 </ol>
@@ -610,7 +610,7 @@ Now lets look at Subtasks.
 <ul>
   <li ng-repeat="subTask in subTasks track by $index">
     <input type="checkbox" ng-click="removeSubTask($index)">
-    {{ subTask }}
+    { { subTask }}
   </li>
 </ul>
 ```
@@ -758,7 +758,7 @@ as shown above for the tasks index that was passed into the `remove` method.
 <button type="button" class="btn btn-primary" (click)="add()">Submit</button>
 <ol>
   <li *ngFor="#task of tasks; #index = index;" [hidden]="!task.active">
-    <h3>{{ task.name }}</h3>
+    <h3>{ { task.name }}</h3>
     <sub-tasks [taskIndex]="index"></sub-tasks>
   </li>
 </ol>
@@ -777,7 +777,7 @@ Now lets see how the subtask directive changed.
 <ul>
   <li *ngFor="#subTask of subTasks; #index = index;">
     <input type="checkbox" (click)="remove(index)">
-    {{ subTask.name }}
+    { { subTask.name }}
   </li>
 </ul>
 ```
