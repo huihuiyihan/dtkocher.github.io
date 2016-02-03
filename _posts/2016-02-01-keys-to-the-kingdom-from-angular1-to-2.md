@@ -3,7 +3,7 @@ layout: post
 title:  The Keys to the Kingdom - From Angular 1 to 2
 url: /angular2/2016/02/01/keys-to-the-kingdom-from-angular-1-to-2.html
 permalink: /angular2/2016/02/01/keys-to-the-kingdom-from-angular-1-to-2.html
-keywords: Angular2, Angular, Directives, Components
+keywords: Angular2, Angular, Directives, Components, Shadow DOM, transclude
 excerpt: The Keys to the Kingdom - From Angular 1 to 2
 date:   2016-01-24 23:54:08
 categories: Angular2
@@ -15,7 +15,7 @@ excerpt: |
     AngularJS was originally created back around 2009. It was built with the hope of helping web designers sprinkle a
     little magic into their designs. What happened instead was the revolution of the single page application. While
     AngularJS is still very powerful it has it warts, after all it was built with design first in mind. With new frameworks
-    like Flux with React coming out with speed and developer savy in mind, AngularJS needed a revamp.
+    like Flux with React coming out with speed and developer savvy in mind, AngularJS needed a revamp.
   </p>
   <p>
     Now that the revamp of AngularJS is here in the form of Angular 2 beta, given it is powered by Google where everything
@@ -26,14 +26,14 @@ excerpt: |
 AngularJS was originally created back in 2009. It was built initially with the hope of helping web designers sprinkle a
 little magic into their html. What happened instead was the revolution of the single page application. While
 AngularJS is still very powerful it has it warts, after all it was built with design first in mind. Given new frameworks
-like Flux with React coming out with speed and developer savy in mind, AngularJS needed a revamp.
+like Flux with React coming out with speed and developer savvy in mind, AngularJS needed a revamp.
 
 Now that the revamp of AngularJS is here, in the form of Angular 2 beta and production ready. After all it is Google and
 everything in production is beta. I think it is time to investigate the Keys to the Kingdom that is Angular 2.
 
 While following along the process of Angular 2's creation, I don't see any easy way to upgrade your apps from Angular 1 to 2.
 There are helpful methods and procedures you can follow, but in the end you will be updating the majority of your code base.
-From what I have seen it is worth it in everyway, whether for a code readability perspective or for technical reasons.
+From what I have seen it is worth it in every way, whether for a code readability perspective or for technical reasons.
 
 In this blog post I am going to start you on your way to picking up Angular 2 based on what you know from Angular 1. The
 true power of Angular 1 was in something called a Directive, and this is where I will start. I will be explaining the Angular 1
@@ -50,7 +50,7 @@ follow along by writing the code yourself you can get a start here:
 
 ###Setting Up Your Directive
 This will be the start of many differences you see between the Angular 1 and 2. In this section we aren't going to add any
-special logic, we will be focusing strickly on setting up the directive files only.
+special logic, we will be focusing strictly on setting up the directive files only.
 <br/>
 
 In **Angular 1** we create a directive by creating a `.directive` function.
@@ -93,12 +93,12 @@ After seeing the differences in setting up the the directive files between Angul
   1. **Do we always have to put the template in the `@View` or can we put it somewhere external?** `@View` also has the templateUrl option you
   can add to the metadata properties. With templateUrl you can point to a file location for your template.
   1. **Do we have to always use `@View` with `@Component`?** You will always need to have a view with a `@Component`. However, you do not
-  necessarly need to use the `@View` annonation. `@Component` actually contains the option of template and templateUrl as well. The power
+  necessarily need to use the `@View` annotation. `@Component` actually contains the option of template and templateUrl as well. The power
   of using `@View` though is it allows you to specify devices to apply the display on, for example mobile or desktop. You can have multiple
   `@View's`.
   1. **What is this `import` and `export`?** In Angular2 everything is modular, and therefore better by default, including the core Angular library.
-  So if you need something external from your Component you must `import` it into your new component hince the `import {Component, View} from 'angular2/core';`.
-  To make your class/component available to the rest of your Angular app you will need to `export` it hince the `export class Task {}`.
+  So if you need something external from your Component you must `import` it into your new component hence the `import {Component, View} from 'angular2/core';`.
+  To make your class/component available to the rest of your Angular app you will need to `export` it hence the `export class Task {}`.
   If you have been doing AngularJS for very long you probably made your Angular 1 app modular by using something like RequireJS or Webpack,
   no more of however. If you have never used RequireJS or Webpack to make your application modular here is what it would look like:
 
@@ -133,7 +133,7 @@ clicking a Submit button.
 
 We will start in **Angular 1**. We need to start out by adding `<task>` tags to the index.html. It is between these tags
 that Angular does all its work. For this post we are not concerned with `ng-controller="MainCtrl"`, but this is required in
-Angular 1 as everything starts with a controller. If you are familar with Angular 1 you can just view the code snippets and move
+Angular 1 as everything starts with a controller. If you are familiar with Angular 1 you can just view the code snippets and move
 on to the Angular 2 section.
 
 ``` html
@@ -158,8 +158,8 @@ Now lets build the tasks template in tasks.html.
 
 The only things to notice in the template are:
 
-  + `ng-model="newTask"` - In Angualr 1, ng-model is a way to associate/use a variable in the Tasks directive's scope to it's template.
-  + `ng-click="addTask()"` - Here we are creating an onclick event and having it call the Tasks directive's `addTask()` function.
+  + `ng-model="newTask"` - In Angular 1, ng-model is a way to associate/use a variable in the Tasks directive's scope to it's template.
+  + `ng-click="addTask()"` - Here we are creating an on-click event and having it call the Tasks directive's `addTask()` function.
   + `ng-repeat="task in tasks track by $index"` - This is Angular 1's template version of a for loop. We are just looping through the
   tasks on the Tasks directive's scope and tracking each task by it's index. There will be a `<li></li>` tag created for each task.
 
@@ -269,7 +269,7 @@ So what you ask is going on here.
   `directives` property array. This would be available in the `@View` metadata as well if you went that route for your display metadata.
   + **Where is the link function?** Well in Angular 2 we don't have to worry about links or controllers anymore. As you see we now have
   a first rate class to represent what is going on. With the beauty of **Typescript** we are able to hide our variables using private
-  encapsolation and expose them via getters and/or setters. By default everything in a Typescript class is public. We also no longer
+  encapsulation and expose them via getters and/or setters. By default everything in a Typescript class is public. We also no longer
   have to worry about this silly **scope** thing. Every class public method or variable is available to the template to call and/or use.
 
 <br>
@@ -290,7 +290,7 @@ the `<tasks>` tags. In other words we want to be able to:
 
 <br>
 
-In **Angular 1** we will be using something fancy called **Transclusion**. It isn't actually all that fancy, it is basicly just
+In **Angular 1** we will be using something fancy called **Transclusion**. It isn't actually all that fancy, it is basically just
 moving html from one location to another.
 
 ``` html
@@ -332,7 +332,7 @@ angular.module('TaskApp')
 
 In Angular 1 to perform transclusion there is something called `ng-transclude` which we will add to the Tasks directive template
 where we want the html injected. We will also need to add the `transclude: true` line to the Tasks directive. If you would like
-to learn more about Transclusion there is a great article [here][[tranclude].
+to learn more about Transclusion there is a great article [here][tranclude].
 
 <br>
 
@@ -352,10 +352,10 @@ In **Angular 2** you just need to do one thing, add `<ng-content>` tags to the t
 </ol>
 ```
 
-Where did **Transclusion** go? Well in Angular 2 we no longer use transculsion, we use something way more powerful called
+Where did **Transclusion** go? Well in Angular 2 we no longer use transclusion, we use something way more powerful called
 **Shadow DOM**. The basics of Shadow DOM are as follows:
 
-  + Shadow DOM allows you to build true components. It seperates the content from the presentation.
+  + Shadow DOM allows you to build true components. It separates the content from the presentation.
     * There are two new nodes introduced to the DOM the Shadow Root and Host.
     * There are two new important standards used. The `<template>` and `<content>` elements.
     * Any style defined on inside the `<template>` tags are private to that template and does not affect the
@@ -366,13 +366,13 @@ Where did **Transclusion** go? Well in Angular 2 we no longer use transculsion, 
     `<template id="#Dustinhost"><style> span { font-family: 'Arial' } </style><content></content> <span>World</span></template>`
     you will be given the display **Hi World**. Also only the span tags within the `<template>` tags are affected by
     the style.
-    * If you are interested in a more indepth view into Shadow DOM you should check out this article [here][shadow-dom].
+    * If you are interested in a more in-depth view into Shadow DOM you should check out this article [here][shadow-dom].
   + You might ask why are we then using ng-content instead of just content tags, which would be a great question. Because
   very few browsers currently support Shadow DOM, Angular 2 provides three forms of Shadow DOM encapsulation. If you don't
   use the default encapsulation you would need to define in the `@Component` metadata the property **encapsulation** of one of the following
     * ViewEncapsulation.None - This takes away Shadow DOM and provides no encapsulation.
     * ViewEncapsulation.Emulated - This is the default. It does not use true Shadow DOM. However it does provide
-    style encapsulation emulation. This inserts style in the main header. To provide the encapsolution it adds attributes
+    style encapsulation emulation. This inserts style in the main header. To provide the encapsulation it adds attributes
     to the style's name and therefor makes it unique to each component. This provides basically what real Shadow DOM provides
     but is a work around for browsers not up to standards.
     * ViewEncapsulation.Native - This uses real Shadow DOM.
@@ -650,7 +650,7 @@ angular.module('TaskApp')
 ```
 
 What to notice here are:
-  + We added a scope taskIndex that needs to be passed in. This will alow the Subtask directive to know the task it is unders
+  + We added a scope taskIndex that needs to be passed in. This will allow the Subtask directive to know the task it is under
   index. For more information the options for scope variables being passed in are:
     * `=` - This is a two way binding between both the parent and child directive. So when the value changes in one directive
     it changes in both. A ng-modle most always be passed in these cases.
@@ -658,9 +658,9 @@ What to notice here are:
     * `@` - This is a one way binding between the parent directive and child directive. When the parent directive changes
     it changes the child directive but not visa versa. An expression must be passed in these cases - `{{}}`.
   + We added a `require: '^tasks'` property to the directive. This forces the directive to be a child of the Tasks directive. It
-  also gives access in the link fuction to the Tasks controller.
-  + In the link function we added the ability to remove a subtaks and when there are no more we call the Tasks directive
-  closeOut function with the approriate task indes so it is no longer displayed.
+  also gives access in the link function to the Tasks controller.
+  + In the link function we added the ability to remove a subtask and when there are no more we call the Tasks directive
+  closeOut function with the appropriate task index so it is no longer displayed.
 
 We now have a working Angular 1 Task and Subtask tracker.
 
@@ -693,7 +693,7 @@ export class Task {
 ```
 
 You might ask why we have an `_active:boolean` defined but not one for `_name`. Well in Typescript we can create public
-and private class variables in the contrustor which is what we did with `_name`.  You also might notice we have export
+and private class variables in the constructor which is what we did with `_name`.  You also might notice we have export
 in front of class, this is so other component or classes can use this Task class.
 
 Now lets update the Tasks component.
@@ -823,7 +823,7 @@ Yes we changed quite a decent amount here.
   + We imported the Task class here just as we did in the Tasks component. Just as we did there we updated all
   the areas dealing with `_tasks` to use the new Task class.
   + You might also notice we have a new metadata property **inputs** which we pass in the array the taskIndex.
-  No longer do we have to create some weird scope variable using the following signes which make no sense =, &, and @.
+  No longer do we have to create some weird scope variable using the following signs which make no sense =, &, and @.
   We also don't have to worry does this bind one way or two way. If it is an inputs it binds from parent to child. If
   it is outputs it binds from child to parent. Lastly you can have the inputs also be in the outputs so you get your
   two way binding.
@@ -844,7 +844,6 @@ Angular 1 and Angular2 in working order you can view the plunkers of the two ver
 
   + [Angular1 Task][angular1-task-done]
   + [Angular2 Task][angular2-task-done]
-
 
 [angular1-starter]: http://plnkr.co/edit/M1Sl3pdhdSOVh2jZUJR6?p=preview
 [angular2-starter]: http://plnkr.co/edit/6jG1UEPt96aY3JeY3Uww?p=preview
