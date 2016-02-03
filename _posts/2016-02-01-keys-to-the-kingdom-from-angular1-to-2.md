@@ -72,7 +72,7 @@ In **Angular 2** you have three things you have to do:
   1. Add the magical metadata using either a `@Component` or `@Directive` annotation
 
 ``` ts
-// app/tasks.ts
+/* app/tasks.ts */
 import {Component, View} from 'angular2/core';
 
 @Component({
@@ -81,7 +81,7 @@ import {Component, View} from 'angular2/core';
 @View({
   template: '<p>Hi</p>'
 })
-export class Task { }
+export class Tasks { }
 ```
 
 After seeing the differences in setting up the the directive files between Angular 1 and 2 you probably have some questions.
@@ -226,7 +226,7 @@ For the most part the Angular 2 Tasks template probably doesn't look much differ
 So nothing to say here. Time to get to the real reason we are here.
 
 ``` ts
-//app/task.ts
+/* app/task.ts */
 import {Component} from 'angular2/core';
 import {CORE_DIRECTIVES} from 'angular2/common';
 
@@ -239,7 +239,7 @@ export class Tasks {
   private _tasks:Array<string> = [];
   private _newTask:string = '';
 
-  get tasks():Array<Task> {
+  get tasks():Array<string> {
     return this._tasks;
   }
 
@@ -253,7 +253,7 @@ export class Tasks {
 
   add():void {
     if(this.newTask.length > 0){
-      this._tasks.push(new Task(this.newTask));
+      this._tasks.push(this.newTask);
       this.newTask = '';
     }
   }
@@ -458,7 +458,7 @@ In **Angular 2** there is slightly more work to do.
 ```
 
 ``` ts
-//app/tasks.ts
+/* app/tasks.ts */
 import {Component} from 'angular2/core';
 import {CORE_DIRECTIVES} from 'angular2/common';
 import {SubTasks} from './sub-tasks'
@@ -497,7 +497,7 @@ We have to import the **SubTasks** component into app/tasks.ts so that Tasks kno
 to add **SubTasks** as a directive that will be used in the components view.
 
 ``` ts
-//app/sub-tasks.ts
+/* app/sub-tasks.ts */
 import {Component} from 'angular2/core';
 import {CORE_DIRECTIVES} from 'angular2/common';
 
@@ -670,7 +670,7 @@ So in **Angular 2** and the power of Typescript lets build a new class called Ta
 Task name and whether it is active or not.
 
 ``` ts
-//app/task.ts
+/* app/task.ts */
 export class Task {
   private _active:boolean;
 
@@ -699,7 +699,7 @@ in front of class, this is so other component or classes can use this Task class
 Now lets update the Tasks component.
 
 ``` ts
-//app/tasks.ts
+/* app/tasks.ts */
 import {Component} from 'angular2/core';
 import {CORE_DIRECTIVES} from 'angular2/common';
 import {Task} from './task';
@@ -781,7 +781,7 @@ Here all we did was add a (click) event to call the subtask directive's `remove`
 to remove.
 
 ``` ts
-//app/sub-tasks.ts
+/* app/sub-tasks.ts */
 import {Component, Inject, forwardRef} from 'angular2/core';
 import {CORE_DIRECTIVES} from 'angular2/common';
 import {Tasks} from './tasks';
