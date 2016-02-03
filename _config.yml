@@ -20,11 +20,13 @@ github_username:  dtkocher
 linkedin_username:  dtkocher
 
 # Build settings
+gems: [jekyll-paginate]
 paginate: 5
 paginate_path: "blog/page:num"
 
-# Styling
-markdown: kramdown
+highlighter: pygments
+markdown: redcarpet
+
 sass:
   syntax: scss
   style: compressed

@@ -4,16 +4,19 @@
   <body>
     {% include navigation.html %}
     {% include background.html %}
+    {% include title.html %}
 
-    <section id="page">
-      {% include title.html %}
-      <div class="container content">
-          <div class="row">
-            {{ content }}
+    <div class="container content">
+      <div class="row">
+        <section id="page">
+          {{ content }}
+          <div class="col-md-9">
+            {% include pagination.html %}
           </div>
-          {% include pagination.html %}
+        </section>
       </div>
-      {% include footer.html %}
-    </section>
+    </div>
+
+    {% include footer.html %}
   </body>
 </html>
