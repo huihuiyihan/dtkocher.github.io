@@ -20,7 +20,7 @@ excerpt: |
   <p>
     Now that the revamp of AngularJS is here in the form of Angular 2 beta, given it is powered by Google where everything
     is beta. I think it is time to investigate the Keys to the Kingdom that is Angular 2
-    <a href="/angular2/2016/01/25/keys-to-the-kingdom-from-angular-1-to-2.html">... read more</a>
+    <a href="/angular2/2016/02/01/keys-to-the-kingdom-from-angular-1-to-2.html">... read more</a>
   </p>
 ---
 AngularJS was originally created back in 2009. It was built initially with the hope of helping web designers sprinkle a
