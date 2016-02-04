@@ -25,7 +25,7 @@ excerpt: |
 ---
 AngularJS was originally created back in 2009. It was built initially with the hope of helping web designers sprinkle a
 little magic into their html. What happened instead was the revolution of the single page application. While
-AngularJS is still very powerful it has it warts, after all it was built with design first in mind. Given new libraries and architectures
+AngularJS is still very powerful it has its warts, after all it was built with design first in mind. Given new libraries and architectures
 like Flux with React coming out, with speed and developer savvy in mind, AngularJS needed a revamp.
 
 Now that the revamp of AngularJS is here, in the form of Angular 2 beta and production ready. After all it is Google and
@@ -55,14 +55,15 @@ special logic. We will be focusing strictly on setting up the directive files on
 
 In **Angular 1** we create a directive by creating a `.directive` function.
 
-``` javascript
+~~~ javascript
 // tasks.js
 angular.module('TaskApp');
 
 app.directive('tasks',function() {
   return {};
 });
-```
+~~~
+
 <br/>
 
 In **Angular 2** you have three things you have to do:
@@ -71,8 +72,8 @@ In **Angular 2** you have three things you have to do:
   1. Create a first rate class
   1. Add the magical metadata to the class using either a `@Component` or `@Directive` annotation
 
-``` ts
-/* app/tasks.ts */
+~~~ javascript
+// app/tasks.ts
 import {Component, View} from 'angular2/core';
 
 @Component({
@@ -82,7 +83,7 @@ import {Component, View} from 'angular2/core';
   template: '<p>Hi</p>'
 })
 export class Tasks { }
-```
+~~~
 
 After seeing the differences in setting up the the directive files between Angular 1 and 2 you probably have some questions.
 
@@ -102,27 +103,28 @@ After seeing the differences in setting up the the directive files between Angul
   If you have never used RequireJS or Webpack I would advise you to do so. This will make the upgrade path
   even easier. Here is what it would look like if you were using RequireJS or Webpack:
 
-    ``` javascript
-      // tasks.directive.js
-      (function() {
-        'use strict';
+~~~ javascript
+  // tasks.directive.js
+  (function() {
+    'use strict';
 
-        module.exports = Tasks;
+    module.exports = Tasks;
 
-        Tasks.$inject = [];
+    Tasks.$inject = [];
 
-        function Tasks() {
-          return {
-          };
-        }
-      })();
-    ```
+    function Tasks() {
+      return {
+      };
+    }
+  })();
+~~~
 
-    ``` javascript
-      // tasks.module.js
-      angular.module('TaskApp')
-      .directive('Tasks', require('./tasks.directive'));
-    ```
+~~~ javascript
+  /* tasks.module.js */
+
+  angular.module('TaskApp')
+  .directive('Tasks', require('./tasks.directive'));
+~~~
 
 <br/>
 
@@ -136,16 +138,16 @@ that Angular does all its work. For this post we are not concerned with `ng-cont
 Angular 1 as everything starts with a controller. If you are familiar with Angular 1 you can just view the code snippets and move
 on to the Angular 2 section.
 
-``` html
+~~~ html
 <!-- index.html -->
   <body ng-controller="MainCtrl">
     <tasks></tasks>
   </body>
-```
+~~~
 
 Now lets build the tasks template in tasks.html.
 
-``` html
+~~~ html
 <!-- tasks.html -->
 <input type="text" ng-model="newTask" placeholder="Enter Tasks"/>
 <button type="button" class="btn btn-primary" ng-click="addTask()">Submit</button>
@@ -154,7 +156,7 @@ Now lets build the tasks template in tasks.html.
     <h3>{ { task }}</h3>
   </li>
 </ol>
-```
+~~~
 
 The only things to notice in the template are:
 
@@ -166,7 +168,7 @@ The only things to notice in the template are:
 
 Now that we have the tags in the index.html and template for the Tasks directive lets actually build it out.
 
-``` javascript
+~~~ javascript
 // tasks.js
 angular.module('TaskApp')
 
@@ -187,7 +189,7 @@ angular.module('TaskApp')
       }
     };
   });
-```
+~~~
 
 The things to point out about this Tasks directive are:
 
@@ -205,16 +207,16 @@ The things to point out about this Tasks directive are:
 
 It is now time to build the **Angular 2** Tasks directive or should I say component.
 
-``` html
+~~~ html
 <!-- app/app.html -->
 <tasks></tasks>
-```
+~~~
 
 The only thing to ask here is why are we putting the `<tasks>` tags in app/app.html instead of index.html. The reason is in Angular 2
 there is always root component and in this example I made the root component a component called App. There is no particular reason I
 did this. I could have just as easily made Tasks the root component.
 
-``` html
+~~~ html
 <!-- app/tasks.html -->
 <input type="text" [(ngModel)]="newTask" placeholder="Enter Tasks" />
 <button type="button" class="btn btn-primary" (click)="add()">Submit</button>
@@ -223,13 +225,13 @@ did this. I could have just as easily made Tasks the root component.
     <h3>{ { task }}</h3>
   </li>
 </ol>
-```
+~~~
 
 For the most part the Angular 2 Tasks template probably doesn't look much different than the Angular 1 version.
 So nothing to say here. Time to get to the real reason we are here.
 
-``` ts
-/* app/task.ts */
+~~~ javascript
+// app/task.ts
 import {Component} from 'angular2/core';
 import {CORE_DIRECTIVES} from 'angular2/common';
 
@@ -261,7 +263,7 @@ export class Tasks {
     }
   }
 }
-```
+~~~
 
 So what you ask is going on here.
 
@@ -285,20 +287,20 @@ We have the ability to add tasks now. But what are these tasks for (Chores at Ho
 define what the tasks are for and style it using the bootstrap page header. We want to be able to put html markup between
 the `<tasks>` tags. In other words we want to be able to:
 
-``` html
+~~~ html
 <tasks>
   <h1>House Chores <br/>
     <small>Create your chores and the taskes to complete them.</small>
   </h1>
 </tasks>
-```
+~~~
 
 <br>
 
 In **Angular 1** we will be using something fancy called **Transclusion**. It isn't actually all that fancy, it is basically just
 moving html from one location to another.
 
-``` html
+~~~ html
 <!-- tasks.html -->
 <div class="page-header" ng-transclude>
 </div>
@@ -309,9 +311,9 @@ moving html from one location to another.
     <h3>{ { task.name }}</h3>
   </li>
 </ol>
-```
+~~~
 
-``` javascript
+~~~ javascript
 // tasks.js
 angular.module('TaskApp')
 
@@ -333,7 +335,7 @@ angular.module('TaskApp')
       }
     };
   });
-```
+~~~
 
 In Angular 1 to perform transclusion there is something called `ng-transclude` which we will add to the Tasks directive template
 in the location we want the html injected. We will also need to add the `transclude: true` line to the Tasks directive. If you would like
@@ -343,7 +345,7 @@ to learn more about Transclusion there is a great article [A Guide To Transclusi
 
 In **Angular 2** you just need to do one thing, add `<ng-content>` tags to the template.
 
-``` html
+~~~ html
 <!-- app/tasks.html -->
 <div class="page-header">
   <ng-content></ng-content>
@@ -355,7 +357,7 @@ In **Angular 2** you just need to do one thing, add `<ng-content>` tags to the t
     <h3>{ { task.name }}</h3>
   </li>
 </ol>
-```
+~~~
 
 Where did **Transclusion** go? Well in Angular 2 we no longer use transclusion, we use something way more powerful called
 **Shadow DOM**. The basics of Shadow DOM are as follows:
@@ -390,7 +392,7 @@ server this is more for visual appeal).
 
 Lets add the following in **Angular 1**.
 
-``` html
+~~~ html
 <!-- tasks.html -->
 <div class="page-header" ng-transclude>
 </div>
@@ -402,9 +404,9 @@ Lets add the following in **Angular 1**.
     <sub-tasks ></sub-tasks>
   </li>
 </ol>
-```
+~~~
 
-``` html
+~~~ html
 <!-- sub-tasks.html -->
 <input type="text" ng-model="newSubTask" placeholder="Enter Sub Tasks"/>
 <button type="button" class="btn btn-primary" ng-click="addSubTask()">Submit</button>
@@ -414,9 +416,9 @@ Lets add the following in **Angular 1**.
     { { subTask }}
   </li>
 </ul>
-```
+~~~
 
-``` javascript
+~~~ javascript
 //sub-tasks.js
 angular.module('TaskApp')
   .directive('subTasks', function() {
@@ -436,7 +438,7 @@ angular.module('TaskApp')
       }
     };
   });
-```
+~~~
 
 There is really nothing of note here. We just created the Subtasks directive, template, and added `<sub-tasks>` tags
 to the tasks.html. Everything else should make sense.
@@ -445,7 +447,7 @@ to the tasks.html. Everything else should make sense.
 
 In **Angular 2** there is slightly more work to do.
 
-``` html
+~~~ html
 <!-- app/tasks.html -->
 <div class="page-header">
   <ng-content></ng-content>
@@ -458,10 +460,10 @@ In **Angular 2** there is slightly more work to do.
     <sub-tasks ></sub-tasks>
   </li>
 </ol>
-```
+~~~
 
-``` ts
-/* app/tasks.ts */
+~~~ javascript
+// app/tasks.ts
 import {Component} from 'angular2/core';
 import {CORE_DIRECTIVES} from 'angular2/common';
 import {SubTasks} from './sub-tasks'
@@ -494,13 +496,13 @@ export class Tasks {
     }
   }
 }
-```
+~~~
 
 We have to import the **SubTasks** component into app/tasks.ts so that Tasks component knows about it. Along with that we had
 to add **SubTasks** as a directive that will be used in the components view.
 
-``` ts
-/* app/sub-tasks.ts */
+~~~ javascript
+// app/sub-tasks.ts
 import {Component} from 'angular2/core';
 import {CORE_DIRECTIVES} from 'angular2/common';
 
@@ -518,12 +520,12 @@ export class SubTasks {
     }
   }
 }
-```
+~~~
 
 This probably looks pretty similar to the Tasks component. The only difference is we are passing in the newSubTask
 to the add method instead of using a variable already defined on SubTasks. Lets see why.
 
-``` html
+~~~ html
 <!-- app/sub-tasks.html -->
 <input type="text" #newSubTask placeholder="Enter Sub Tasks"/>
 <button type="button" class="btn btn-primary" (click)="add(newSubTask.value); newSubTask.value=''">Submit</button>
@@ -533,7 +535,7 @@ to the add method instead of using a variable already defined on SubTasks. Lets 
     { { subTask.name }}
   </li>
 </ul>
-```
+~~~
 
 The reasons is because in Angular 2 we can define template variables. You do this by adding a #variablename attribute
 to the element. As you can see we created a newSubTask template variable that holds the input value for the input field.
@@ -549,7 +551,7 @@ if a tasks no longer has any active subtasks lets remove them as well.
 
 In **Angular 1** lets start by setting up the Tasks directive:
 
-``` html
+~~~ html
 <!-- tasks.html -->
 <div class="page-header" ng-transclude>
 </div>
@@ -561,12 +563,12 @@ In **Angular 1** lets start by setting up the Tasks directive:
     <sub-tasks task-index="$index"></sub-tasks>
   </li>
 </ol>
-```
+~~~
 
 First we are going to have to send the Subtasks directive the index of the task that they belong to. This
 is done by passing the index as we loop to the attribute task-index.
 
-``` js
+~~~ js
 //tasks.js
 angular.module('TaskApp')
 
@@ -595,7 +597,7 @@ angular.module('TaskApp')
       }
     };
   });
-```
+~~~
 
 Second we are going to have to add a controller to the Tasks directive. We need this as mentioned earlier because
 another directive will need to talk to it, that directive being the Subtasks directive. In the controller we created
@@ -603,7 +605,7 @@ a closeOut function that will be called by the Subtasks directive with the index
 
 Now lets look at Subtasks.
 
-``` html
+~~~ html
 <!-- sub-tasks.html -->
 <input type="text" ng-model="newSubTask" placeholder="Enter Sub Tasks"/>
 <button type="button" class="btn btn-primary" ng-click="addSubTask()">Submit</button>
@@ -613,11 +615,11 @@ Now lets look at Subtasks.
     { { subTask }}
   </li>
 </ul>
-```
+~~~
 
 All we did here was add a ng-click event to call removeSubTasks with the index of the Subtask that needs to be removed.
 
-``` js
+~~~ js
 //sub-tasks.js
 angular.module('TaskApp')
   .directive('subTasks', function() {
@@ -651,7 +653,7 @@ angular.module('TaskApp')
       }
     };
   });
-```
+~~~
 
 What to notice here are:
 
@@ -674,8 +676,8 @@ We now have a working Angular 1 Task and Subtask tracker.
 So in **Angular 2** and the power of Typescript lets build a new class called Task. In this class we want to hold the
 Task name and whether it is active or not.
 
-``` ts
-/* app/task.ts */
+~~~ javascript
+// app/task.ts
 export class Task {
   private _active:boolean;
 
@@ -695,7 +697,7 @@ export class Task {
     this._active = false;
   }
 }
-```
+~~~
 
 You might ask why we have an `_active:boolean` defined but not one for `_name`. Well in Typescript we can create public
 and private class variables in the constructor which is what we did with `_name`.  You also might notice we have export
@@ -703,8 +705,8 @@ in front of class, this is so other components or classes can use this Task clas
 
 Now lets update the Tasks component.
 
-``` ts
-/* app/tasks.ts */
+~~~ javascript
+// app/tasks.ts
 import {Component} from 'angular2/core';
 import {CORE_DIRECTIVES} from 'angular2/common';
 import {Task} from './task';
@@ -742,14 +744,14 @@ export class Tasks {
     this._tasks[index].deactive();
   }
 }
-```
+~~~
 
 Here we have imported the new Task class. We have also updated all the _tasks to use the new Task class. We have an
 Array of Task now and we create `new Task(this.newTask)` objects when we add a task. The other thing we added was
 the `remove` method. This method calls the `deactive()` method on the Task class to set the active attribute to false
 as shown above for the tasks index that was passed into the `remove` method.
 
-``` html
+~~~ html
 <!-- app/tasks.html -->
 <div class="page-header">
   <ng-content></ng-content>
@@ -762,7 +764,7 @@ as shown above for the tasks index that was passed into the `remove` method.
     <sub-tasks [taskIndex]="index"></sub-tasks>
   </li>
 </ol>
-```
+~~~
 
 In the tasks.html we have added a [hidden] attribute that is part of the CORE_DIRECTIVES which allows us to define wether or
 not to show a element. It replaces Angular 1's ng-show and ng-hide. The other thing we did was define a new attribute on sub-tasks called [taskIndex] in which we pass
@@ -770,7 +772,7 @@ the index of the task the subtask is associated with.
 
 Now lets see how the subtask directive changed.
 
-``` html
+~~~ html
 <!-- app/sub-tasks.html -->
 <input type="text" #newSubTask placeholder="Enter Sub Tasks"/>
 <button type="button" class="btn btn-primary" (click)="add(newSubTask.value); newSubTask.value=''">Submit</button>
@@ -780,13 +782,13 @@ Now lets see how the subtask directive changed.
     { { subTask.name }}
   </li>
 </ul>
-```
+~~~
 
 Here all we did was add a (click) event to call the subtask directive's `remove` function with the index of the subtask
 to remove.
 
-``` ts
-/* app/sub-tasks.ts */
+~~~ javascript
+// app/sub-tasks.ts
 import {Component, Inject, forwardRef} from 'angular2/core';
 import {CORE_DIRECTIVES} from 'angular2/common';
 import {Tasks} from './tasks';
@@ -822,7 +824,7 @@ export class SubTasks {
     }
   }
 }
-```
+~~~
 
 Yes we changed quite a decent amount here.
 

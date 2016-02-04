@@ -34,9 +34,14 @@
   <!-- Stylesheets -->
   <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
   <link rel="stylesheet" href="{% if page.layout == 'post' %}{{ "/css/" | append: 'main' | append: '.css' | prepend: site.baseurl }}{% elsif page.layout == 'pagination' %}{{ "/css/" | append: 'main' | append: '.css' | prepend: site.baseurl }}{%else%}{{ "/css/" | append: page.layout | append: '.css' | prepend: site.baseurl }}{% endif %}">
-  <link rel="stylesheet" href="{% if page.layout == 'post' %}{{ "/css/" | append: 'syntax' | append: '.css' | prepend: site.baseurl }}{% endif %}">
 
   <!-- Javascript -->
+  {% if page.layout == 'post' %}
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.1.0/styles/solarized-dark.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.1.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+  {% endif %}
+
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
   <script src="{{ "/js/bootstrap.min.js" | prepend: site.baseurl }}"></script>
   <script src="{{ "/js/main.js" | prepend: site.baseurl }}"></script>
