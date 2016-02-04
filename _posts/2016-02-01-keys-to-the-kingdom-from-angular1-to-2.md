@@ -128,7 +128,7 @@ After seeing the differences in setting up the the directive files between Angul
 
 <br/>
 
-###Building Out The Ability To Add Tasks
+### Building Out The Ability To Add Tasks
 Now we have setup the directives in both Angular 1 and 2, and understand how the setups differ. It is now time to add
 some logic to these Directives. We will be adding the ability to Add Tasks to a list by entering the Task name and
 clicking a Submit button.
