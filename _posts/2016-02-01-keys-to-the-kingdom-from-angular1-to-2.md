@@ -48,7 +48,7 @@ follow along by writing the code yourself you can get a start here:
 
 <br/>
 
-###Setting Up Your Directive
+### Setting Up Your Directive
 This will be the start of many differences you see between the Angular 1 and 2. In this section we aren't going to add any
 special logic. We will be focusing strictly on setting up the directive files only.
 <br/>
@@ -281,7 +281,7 @@ So what you ask is going on here.
 
 <br>
 
-###What Are These Tasks For
+### What Are These Tasks For
 
 We have the ability to add tasks now. But what are these tasks for (Chores at Home, Work, etc.)? Lets add the ability to
 define what the tasks are for and style it using the bootstrap page header. We want to be able to put html markup between
@@ -385,7 +385,7 @@ Where did **Transclusion** go? Well in Angular 2 we no longer use transclusion, 
 
 <br>
 
-###Adding Subtasks To A Task
+### Adding Subtasks To A Task
 Now that we have the ability to add tasks it would be nice if we could add subtasks to each task to allow more detail
 to be added. Lets also add a checkbox to each subtask so we can mark when it is complete (really since we aren't hitting a
 server this is more for visual appeal).
@@ -544,7 +544,7 @@ just for passing data from the template to the Directive/Component.
 
 <br>
 
-###Removing Completed Subtasks and Completed Tasks
+### Removing Completed Subtasks and Completed Tasks
 
 Now that we can create tasks and subtasks lets take it one more step. Lets remove the subtasks that are complete and
 if a tasks no longer has any active subtasks lets remove them as well.
@@ -847,7 +847,7 @@ Yes we changed quite a decent amount here.
 
 <br>
 
-###Conclusion
+### Conclusion
 There are several ways you can still approve apon the given code using just Typescript. You can extend the Tasks component on the Subtasks
 component class since a Subtask really is a Task. There are several other things you could do as well. However for this post I just wanted to cover
 the differences between Angular 1 and 2 in regards to the **Directive**.
