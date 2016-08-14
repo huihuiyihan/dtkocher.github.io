@@ -12,30 +12,31 @@ body_description: |
   to the Kingdom - From Angular 1 to 2
 excerpt: |
   <p>
-    AngularJS was originally created back around 2009. It was built with the hope of helping web designers sprinkle a
-    little magic into their designs. What happened instead was the revolution of the single page application. While
-    AngularJS is still very powerful it has it warts, after all it was built with design first in mind. With new frameworks
-    like Flux with React coming out with speed and developer savvy in mind, AngularJS needed a revamp.
+    AngularJS was originally created back in 2009. It was built initially with the hope of helping web designers sprinkle a
+    little magic into their html. What happened instead was the revolution of the single page application. While
+    AngularJS is still very powerful it has its warts, after all it was built with design first in mind. Given new libraries and architectures
+    like Flux with React coming out, with speed and developer savvy in mind, AngularJS needed a revamp.
   </p>
   <p>
-    Now that the revamp of AngularJS is here in the form of Angular 2 beta, given it is powered by Google where everything
-    is beta. I think it is time to investigate the Keys to the Kingdom that is Angular 2
+    Now that the revamp of AngularJS is here, in the form of Angular 2. Currently production ready in rc phase 4. After all we are talking Google and
+    everything in production is beta. I think it is now time to investigate the Keys to the Kingdom of Angular 2.
     <a href="/angular2/2016/02/01/keys-to-the-kingdom-from-angular1-to-2/">... read more</a>
   </p>
 ---
+<b>***Updated 08/13/2016***</b>
+
 AngularJS was originally created back in 2009. It was built initially with the hope of helping web designers sprinkle a
 little magic into their html. What happened instead was the revolution of the single page application. While
 AngularJS is still very powerful it has its warts, after all it was built with design first in mind. Given new libraries and architectures
 like Flux with React coming out, with speed and developer savvy in mind, AngularJS needed a revamp.
 
-Now that the revamp of AngularJS is here, in the form of Angular 2 beta and production ready. After all it is Google and
-everything in production is beta. I think it is time to investigate the Keys to the Kingdom of Angular 2.
+Now that the revamp of AngularJS is here, in the form of Angular 2. Currently production ready in rc phase 4. After all we are talking Google and
+everything in production is beta. I think it is now time to investigate the Keys to the Kingdom of Angular 2.
 
-While following along the process of Angular 2's creation, I don't see any easy way to upgrade your apps from Angular 1 to 2.
-There are helpful methods and procedures you can follow, but in the end you will be updating the majority of your code base.
-From what I have seen it is worth it in every way, whether from a code readability perspective or due to technical reasons.
+While following along the process of Angular 2's creation, I didn't initially see any easy way to upgrade your apps from Angular 1 to 2.
+However, with NG-CONF and the announcement of AngularJS 1.5, it looks like there is now a nice path forward, but that is for another post.
 
-In this blog post I am going to start you on your way to picking up Angular 2 based on what you know from Angular 1. The
+In this blog post I am going to start you on your way to picking up Angular 2 based on what you know from Angular 1 (pre 1.5). The
 true power of Angular 1 was in something called a Directive, and this is where I will start. I will be explaining the Angular 1
 approach as I go along in the case you are new to Angular 1 as well.
 
@@ -221,14 +222,15 @@ did this. I could have just as easily made Tasks the root component.
 <input type="text" [(ngModel)]="newTask" placeholder="Enter Tasks" />
 <button type="button" class="btn btn-primary" (click)="add()">Submit</button>
 <ol>
-  <li *ngFor="#task of tasks; #index = index;">
+  <li *ngFor="let task of tasks; let index = index;">
     <h3>{ { task }}</h3>
   </li>
 </ol>
 ~~~
 
 For the most part the Angular 2 Tasks template probably doesn't look much different than the Angular 1 version.
-So nothing to say here. Time to get to the real reason we are here.
+So nothing to say here. Time to get to the real reason we are here. <b>***Update here is that since rc you now will
+use let instead of a template variable to help show the scope fo the task or index variables.***</b>
 
 ~~~ javascript
 // app/task.ts
@@ -353,7 +355,7 @@ In **Angular 2** you just need to do one thing, add `<ng-content>` tags to the t
 <input type="text" [(ngModel)]="newTask" placeholder="Enter Tasks" />
 <button type="button" class="btn btn-primary" (click)="add()">Submit</button>
 <ol>
-  <li *ngFor="#task of tasks; #index = index;">
+  <li *ngFor="let task of tasks; let index = index;">
     <h3>{ { task.name }}</h3>
   </li>
 </ol>
@@ -455,7 +457,7 @@ In **Angular 2** there is slightly more work to do.
 <input type="text" [(ngModel)]="newTask" placeholder="Enter Tasks" />
 <button type="button" class="btn btn-primary" (click)="add()">Submit</button>
 <ol>
-  <li *ngFor="#task of tasks; #index = index;">
+  <li *ngFor="let task of tasks; let index = index;">
     <h3>{ { task.name }}</h3>
     <sub-tasks ></sub-tasks>
   </li>
@@ -530,7 +532,7 @@ to the add method instead of using a variable already defined on SubTasks. Lets 
 <input type="text" #newSubTask placeholder="Enter Sub Tasks"/>
 <button type="button" class="btn btn-primary" (click)="add(newSubTask.value); newSubTask.value=''">Submit</button>
 <ul>
-  <li *ngFor="#subTask of subTasks; #index = index;">
+  <li *ngFor="let subTask of subTasks; let index = index;">
     <input type="checkbox">
     { { subTask.name }}
   </li>
@@ -606,15 +608,9 @@ a closeOut function that will be called by the Subtasks directive with the index
 Now lets look at Subtasks.
 
 ~~~ html
-<!-- sub-tasks.html -->
-<input type="text" ng-model="newSubTask" placeholder="Enter Sub Tasks"/>
-<button type="button" class="btn btn-primary" ng-click="addSubTask()">Submit</button>
-<ul>
-  <li ng-repeat="subTask in subTasks track by $index">
-    <input type="checkbox" ng-click="removeSubTask($index)">
-    { { subTask }}
-  </li>
-</ul>
+<script src="https://code.angularjs.org/2.0.0-beta.7/router.js"></script>
+
+
 ~~~
 
 All we did here was add a ng-click event to call removeSubTasks with the index of the Subtask that needs to be removed.
@@ -759,7 +755,7 @@ as shown above for the tasks index that was passed into the `remove` method.
 <input type="text" [(ngModel)]="newTask" placeholder="Enter Tasks" />
 <button type="button" class="btn btn-primary" (click)="add()">Submit</button>
 <ol>
-  <li *ngFor="#task of tasks; #index = index;" [hidden]="!task.active">
+  <li *ngFor="let task of tasks; let index = index;" [hidden]="!task.active">
     <h3>{ { task.name }}</h3>
     <sub-tasks [taskIndex]="index"></sub-tasks>
   </li>
@@ -777,7 +773,7 @@ Now lets see how the subtask directive changed.
 <input type="text" #newSubTask placeholder="Enter Sub Tasks"/>
 <button type="button" class="btn btn-primary" (click)="add(newSubTask.value); newSubTask.value=''">Submit</button>
 <ul>
-  <li *ngFor="#subTask of subTasks; #index = index;">
+  <li *ngFor="let subTask of subTasks; let index = index;">
     <input type="checkbox" (click)="remove(index)">
     { { subTask.name }}
   </li>
@@ -854,7 +850,8 @@ the differences between Angular 1 and 2 in regards to the **Directive**.
 
 I hope this post has helped you learn. As you can see just from the perspective of writing a
 Directive, a ton has changed from Angular 1 to 2. If you wish to look at or play around with the final product
-of the TaskApp in Angular 1 and Angular2 you can view the plunkers below:
+of the TaskApp in Angular 1 and Angular2 you can view the plunkers below: <b>***The only thing that is different in
+the Angular 2 Plunker from what you see here is it is using beta and not using let in the *ngFor let scoping***</b>
 
   + [Angular1 Task][angular1-task-done]
   + [Angular2 Task][angular2-task-done]
